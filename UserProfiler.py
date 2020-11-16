@@ -27,7 +27,7 @@ class UserProfiler():
         recommendations = [i for i in recs[0] if i not in user_ratings.index.values]
 
         titles = self.dataHandler.anime['title'][recommendations]
-        rank = self.dataHandler.anime['rank'][recommendations]
-        final = ((pd.concat([titles, rank], axis=1)).sort_values(by='rank', ascending=True)).dropna()
+        rank = self.dataHandler.anime['popularity'][recommendations]
+        final = (((pd.concat([titles, rank], axis=1)).sort_values(by='popularity', ascending=True)).dropna())['title']
 
-        return final
+        return final[~final.isin(user_ratings['title'].values)]
