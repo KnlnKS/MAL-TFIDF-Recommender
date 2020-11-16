@@ -22,5 +22,4 @@ class UserProfiler():
         cos_sim = cosine_similarity(np.atleast_2d(profile), self.tfidf.dataset_transformed)
         recs = np.argsort(cos_sim)[:, ::-1]
         recommendations = [i for i in recs[0] if i not in user_ratings.index.values]
-        print(self.dataHandler.anime['title'])
         return self.dataHandler.anime['title'][recommendations]

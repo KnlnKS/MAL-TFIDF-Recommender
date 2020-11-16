@@ -21,7 +21,6 @@ class DataHandler():
         else:
             self.anime_lists = pd.read_csv('./input/animelists_cleaned.csv', nrows=1000000)[
                 ['username', 'anime_id', 'my_score']]
-        #self.anime_lists['username'] = pd.Categorical(self.anime_lists['username'])
 
 
     def _remove_nans_from_genres(self):
