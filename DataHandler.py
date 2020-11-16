@@ -16,7 +16,7 @@ class DataHandler():
             return str(a)[1:-1]
 
     def _load_data(self, is_limited):
-        self.anime = pd.read_csv('./input/anime_cleaned.csv')[['anime_id', 'title', 'score', 'genre']].sort_values(by='score', ascending=False)
+        self.anime = pd.read_csv('./input/anime_cleaned.csv')[['anime_id', 'title', 'score', 'rank', 'genre']]
         if not is_limited:
             self.anime_lists = pd.read_csv('./input/animelists_cleaned.csv')[
                 ['username', 'anime_id', 'my_score']]
