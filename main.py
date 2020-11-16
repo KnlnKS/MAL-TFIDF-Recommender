@@ -4,6 +4,7 @@ import DataHandler as d
 import TFIDF as tf
 import UserProfiler as u
 
+
 # Load in score data
 start = t.time()
 dataHandler = d.DataHandler(False)

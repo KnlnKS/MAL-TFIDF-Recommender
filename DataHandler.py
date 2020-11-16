@@ -9,7 +9,7 @@ class DataHandler():
 
     def _remove_nans(self, s):
         if isinstance(s, str):
-            return s.split(',')
+            return s
         else:
             return 'none'
 
@@ -25,6 +25,7 @@ class DataHandler():
 
     def _remove_nans_from_genres(self):
         self.anime['genre'] = self.anime['genre'].apply(self._remove_nans)
+
 
 
 
