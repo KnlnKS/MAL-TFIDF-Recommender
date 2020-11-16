@@ -19,18 +19,15 @@ class UserProfiler():
         user_ratings = self.get_user_ratings(username)
         user_ratings['weight'] = user_ratings['my_score'] / 10.
 
-        profile = np.dot(self.tfidf.dataset_transformed[user_ratings.index.values].toarray().T, user_ratings['weight'].values)
+        profile = np.dot(self.tfidf.dataset_transformed[user_ratings.index.values].toarray().T,
+                         user_ratings['weight'].values)
         cos_sim = cosine_similarity(np.atleast_2d(profile), self.tfidf.dataset_transformed)
 
         recs = np.argsort(cos_sim)[:, ::-1]
         recommendations = [i for i in recs[0] if i not in user_ratings.index.values]
 
-        print(recommendations)
+        titles = self.dataHandler.anime['title'][recommendations]
+        rank = self.dataHandler.anime['rank'][recommendations]
+        final = ((pd.concat([titles, rank], axis=1)).sort_values(by='rank', ascending=True)).dropna()
 
-        rank_sorted = (self.dataHandler.anime['title'][recommendations]).sort_values(ascending=True)
-        rank_sorted = (rank_sorted.dropna()).index.values.tolist()
-
-        print(self.dataHandler.anime.size)
-        print(self.dataHandler.anime['title'][rank_sorted].size)
-
-        return self.dataHandler.anime['title'][rank_sorted]
+        return final
