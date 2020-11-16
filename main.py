@@ -13,6 +13,7 @@ print()
 
 similarities = tf.TFIDF(dataHandler.anime)
 recommender = u.UserProfiler(similarities, dataHandler)
-# print(recommender.get_user_ratings('Kvazikvark').sort_values(by='my_score', ascending=False))
-print(recommender.get_user_recommendations('Kvazikvark'))
+#print(recommender.get_user_ratings('Kvazikvark').sort_values(by='my_score', ascending=False))
+
+print(recommender.get_user_recommendations('Kvazikvark').head())
 print()
